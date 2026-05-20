@@ -567,7 +567,7 @@ BEGIN
     DECLARE @ArchivePath VARCHAR(500);
     
     -- 1. 清理SQL Server错误日志归档
-    SET @ArchivePath = 'D:\SQLLogs\Archive\Error\';
+    SET @ArchivePath = 'D:\SQLBackup\Archive\Error\';
     SET @CleanupDate = DATEADD(DAY, -@ErrorLogRetentionDays, GETDATE());
     
     -- 删除超过保留期的错误日志文件
@@ -579,7 +579,7 @@ BEGIN
         1;
     
     -- 2. 清理SQL Server Agent日志
-    SET @ArchivePath = 'D:\SQLLogs\Archive\Agent\';
+    SET @ArchivePath = 'D:\SQLBackup\Archive\Agent\';
     SET @CleanupDate = DATEADD(DAY, -@AgentLogRetentionDays, GETDATE());
     
     EXEC master.dbo.xp_delete_file 
@@ -590,7 +590,7 @@ BEGIN
         1;
     
     -- 3. 清理跟踪日志
-    SET @ArchivePath = 'D:\SQLLogs\Trace\';
+    SET @ArchivePath = 'D:\SQLBackup\Trace\';
     SET @CleanupDate = DATEADD(DAY, -@TraceLogRetentionDays, GETDATE());
     
     EXEC master.dbo.xp_delete_file 
